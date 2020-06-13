@@ -14,7 +14,12 @@
   "author": "PabloSz",
   "main": "api/index.ts",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development tsc-watch --noClear --onSuccess \"node ./dist/api/index.js\""
+    "build": "run-p -l build-*",
+    "build-api": "tsc",
+    "build-client": "next build client",
+    "dev": "cross-env NODE_ENV=development tsc-watch --noClear --onSuccess \"node ./dist/api/index.js\"",
+    "start": "run-s -l build start-server",
+    "start-server": "cross-env NODE_ENV=production node ./dist/api/index.js"
   },
   "dependencies": {
     "@types/node": "^14.0.13",
