@@ -13,6 +13,7 @@ export const registerGraphQL = async (
     res.type("text/html").send(
       renderPlaygroundPage({
         endpoint: "/api/graphql",
+        subscriptionEndpoint: "/api/graphql",
         settings: {
           "general.betaUpdates": true,
           "request.credentials": "include",
@@ -33,5 +34,6 @@ export const registerGraphQL = async (
     path: "/api/graphql",
     schema: await schema,
     subscription: true,
+    jit: 1,
   });
 };

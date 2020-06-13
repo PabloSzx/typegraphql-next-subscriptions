@@ -15,29 +15,27 @@ const nextHandler = nextApp.getRequestHandler();
 
 const prepared = nextApp.prepare();
 
-export const registerNextJS = (
+export const registerNextJS = async (
   server: FastifyInstance<Server, IncomingMessage, ServerResponse>
 ) => {
+  await prepared;
+
   server.register((fastify, _opts, next) => {
-    prepared
-      .then(() => {
-        fastify.get("/_next/*", async (req, reply) => {
-          await nextHandler(req.req, reply.res);
-          reply.sent = true;
-        });
+    fastify.get("/_next/*", async (req, reply) => {
+      await nextHandler(req.req, reply.res);
+      reply.sent = true;
+    });
 
-        fastify.all("/*", async (req, reply) => {
-          nextHandler(req.req, reply.res);
-          reply.sent = true;
-        });
+    fastify.all("/*", async (req, reply) => {
+      nextHandler(req.req, reply.res);
+      reply.sent = true;
+    });
 
-        fastify.setNotFoundHandler(async (request, reply) => {
-          await nextApp.render404(request.req, reply.res);
-          reply.sent = true;
-        });
+    fastify.setNotFoundHandler(async (request, reply) => {
+      await nextApp.render404(request.req, reply.res);
+      reply.sent = true;
+    });
 
-        next();
-      })
-      .catch(next);
+    next();
   });
 };
