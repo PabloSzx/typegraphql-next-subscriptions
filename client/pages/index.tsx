@@ -1,5 +1,13 @@
-import { IS_PRODUCTION } from "../../shared/constants";
+import { useSubscription } from "urql";
+
+import { IS_BROWSER } from "../../shared/constants";
 
 export default () => {
-  return <div>hello world {IS_PRODUCTION ? "yes" : "no"}</div>;
+  const [{ data }] = useSubscription({
+    query: `subscription {
+      newNotification
+    }`,
+    pause: !IS_BROWSER,
+  });
+  return <div>hello world {JSON.stringify(data)}</div>;
 };

@@ -5,14 +5,17 @@ dependencies:
   fastify-gql: 4.0.0
   graphql: 15.1.0
   graphql-playground-html: 1.6.25
+  graphql-subscriptions: 1.1.0_graphql@15.1.0
   next: 9.4.4_ca1896585c3b88e06ba893a4954b1f43
   npm-run-all: 4.1.5
   react: 16.13.1
   react-dom: 16.13.1_react@16.13.1
   reflect-metadata: 0.1.13
+  subscriptions-transport-ws: 0.9.16_graphql@15.1.0
   ts-node-dev: 1.0.0-pre.44_typescript@3.9.5
   type-graphql: 1.0.0-rc.2_65a4f50e5e23b567759397111f9b5d94
   typescript: 3.9.5
+  urql: 1.9.8_graphql@15.1.0+react@16.13.1
 devDependencies:
   '@types/react': 16.9.36
   '@types/react-dom': 16.9.8
@@ -1164,6 +1167,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-WAy5txG7aFX8Vw3sloEKp5p/t/Xt8jD3GRD9DacnFv6Vo8ubudAsRTXgxpQwU0mpzY/H8U4db3roDuCMjShBmw==
+  /@urql/core/1.12.0_graphql@15.1.0:
+    dependencies:
+      graphql: 15.1.0
+      wonka: 4.0.14
+    dev: false
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+    resolution:
+      integrity: sha512-OyE1FClMz+r3j3v5MxNGzlpvFZya7PQxbSya5qa2lIJdyf9AtExJwjxpjmOf3crQGUvxatRVso4F9SNLT5MDjQ==
   /@webassemblyjs/ast/1.9.0:
     dependencies:
       '@webassemblyjs/helper-module-context': 1.9.0
@@ -1503,6 +1515,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-z/WhQ5FPySLdvREByI2vZiTWwCnF0moMJ1hK9YQwDTHKh6I7/uSckMetoRGb5UBZPC1z0jlw+n/XCgjeH7y1AQ==
+  /async-limiter/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
   /atob/2.1.2:
     dev: false
     engines:
@@ -1555,6 +1571,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
+  /backo2/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-MasayLEpNjRj41s+u2n038+6eUc=
   /balanced-match/1.0.0:
     dev: false
     resolution:
@@ -2757,6 +2777,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+  /eventemitter3/3.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-tvtQIeLVHjDkJYnzf2dgVMxfuSGJeM/7UCG17TT4EumTfNtF+0nebF/4zWOIkCreAbtNqhGEboB6BWrwqNaw4Q==
   /events/3.1.0:
     dev: false
     engines:
@@ -6298,6 +6322,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q==
+  /subscriptions-transport-ws/0.9.16_graphql@15.1.0:
+    dependencies:
+      backo2: 1.0.2
+      eventemitter3: 3.1.2
+      graphql: 15.1.0
+      iterall: 1.3.0
+      symbol-observable: 1.2.0
+      ws: 5.2.2
+    dev: false
+    peerDependencies:
+      graphql: ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.1 || ^14.0.2
+    resolution:
+      integrity: sha512-pQdoU7nC+EpStXnCfh/+ho0zE0Z+ma+i7xvj7bkXKb1dvYHSZxgRPaU6spRP+Bjzow67c/rRDoix5RT0uU9omw==
   /supports-color/2.0.0:
     dev: false
     engines:
@@ -6349,6 +6386,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-yhy/sQYxR5BkC98CY7o31VGsg014AKLEPxdfhora76l36hD9Rdy5NZA/Ocn6yayNPgSamYdtX2rFJdcv07AYVw==
+  /symbol-observable/1.2.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
   /tapable/1.1.3:
     dev: false
     engines:
@@ -6707,6 +6750,18 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ODjpfPxgUh63PFJajlW/3Z4uKPE=
+  /urql/1.9.8_graphql@15.1.0+react@16.13.1:
+    dependencies:
+      '@urql/core': 1.12.0_graphql@15.1.0
+      graphql: 15.1.0
+      react: 16.13.1
+      wonka: 4.0.14
+    dev: false
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      react: '>= 16.8.0'
+    resolution:
+      integrity: sha512-AMikyJ9ldVvFVRND7AjgHJ3dBZXH2ygTM9bj4BwQzE9gfJfWA1wK+dXffV1WTOdOoCRngIxGWgZIzSkoLGBpbw==
   /use-subscription/1.4.1_react@16.13.1:
     dependencies:
       object-assign: 4.1.1
@@ -6863,6 +6918,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ==
+  /wonka/4.0.14:
+    dev: false
+    resolution:
+      integrity: sha512-v9vmsTxpZjrA8CYfztbuoTQSHEsG3ZH+NCYfasHm0V3GqBupXrjuuz0RJyUaw2cRO7ouW2js0P6i853/qxlDcA==
   /worker-farm/1.7.0:
     dependencies:
       errno: 0.1.7
@@ -6879,6 +6938,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+  /ws/5.2.2:
+    dependencies:
+      async-limiter: 1.0.1
+    dev: false
+    resolution:
+      integrity: sha512-jaHFD6PFv6UgoIVda6qZllptQsMlDEJkTQcybzzXDYM1XO9Y8em691FGMPmM46WGyLU4z9KMgQN+qrux/nhlHA==
   /ws/7.3.0:
     dev: false
     engines:
@@ -6936,11 +7001,14 @@ specifiers:
   fastify-gql: ^4.0.0
   graphql: 15.1.0
   graphql-playground-html: ^1.6.25
+  graphql-subscriptions: ^1.1.0
   next: ^9.4.4
   npm-run-all: ^4.1.5
   react: ^16.13.1
   react-dom: ^16.13.1
   reflect-metadata: ^0.1.13
+  subscriptions-transport-ws: ^0.9.16
   ts-node-dev: ^1.0.0-pre.44
   type-graphql: ^1.0.0-rc.2
   typescript: ^3.9.5
+  urql: ^1.9.8

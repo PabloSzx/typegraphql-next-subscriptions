@@ -20,7 +20,7 @@ export const registerGraphQL = async (
           "tracing.hideTracingResponse": false,
           "tracing.tracingSupported": true,
           "editor.theme": "dark",
-          "editor.cursorShape": "block",
+          "editor.cursorShape": "line",
           "editor.fontFamily":
             "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace",
           "editor.fontSize": 14,
@@ -32,5 +32,6 @@ export const registerGraphQL = async (
   server.register(GQL, {
     path: "/api/graphql",
     schema: await schema,
+    subscription: true,
   });
 };
