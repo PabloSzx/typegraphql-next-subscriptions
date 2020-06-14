@@ -7,27 +7,29 @@ import { cpus } from "os";
 import { IS_PRODUCTION } from "../shared/constants";
 
 if (cluster.isMaster) {
-  if (IS_PRODUCTION) console.log(`Master ${process.pid} is running`);
-
-  const workers: Array<cluster.Worker> = [];
-
-  for (let i = 0; i < (IS_PRODUCTION ? cpus().length : 1); i++) {
-    const fork = cluster.fork();
-    workers.push(fork);
-
-    fork.on("message", (event) => {
-      for (const worker of workers) {
-        if (worker.id !== event.workerId) {
-          worker.send(event);
-        }
-      }
-    });
-  }
-
   if (IS_PRODUCTION) {
+    console.log(`Master ${process.pid} is running`);
+    const workers: Array<cluster.Worker> = [];
+
+    const nThreads = cpus().length;
+    for (let i = 0; i < nThreads; i++) {
+      const fork = cluster.fork();
+      workers.push(fork);
+
+      fork.on("message", (event) => {
+        for (const worker of workers) {
+          if (worker.id !== event.workerId) {
+            worker.send(event);
+          }
+        }
+      });
+    }
+
     cluster.on("exit", (worker) => {
       console.log(`Worker ${worker.process.pid} died`);
     });
+  } else {
+    cluster.fork();
   }
 } else {
   if (IS_PRODUCTION) console.log(`Worker ${process.pid} is running`);
