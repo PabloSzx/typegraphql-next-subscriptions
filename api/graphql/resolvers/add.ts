@@ -1,7 +1,6 @@
 import { Arg, Int, Query, Resolver, Root, Subscription } from "type-graphql";
-import cluster from "cluster";
 import { data } from "../../data";
-import { pubSub } from "../pubsub";
+import { pubSubPublish, pubSub } from "../pubsub";
 
 export const NOTIFICATION = "notification";
 
@@ -15,16 +14,11 @@ export class Add {
   async add(@Arg("x") x: number, @Arg("y") y: number) {
     const n = x + y;
 
-    data.n += n;
+    const result = data.n + n;
 
-    pubSub.publish(NOTIFICATION, data.n).catch(console.error);
-    process.send?.({
-      action: NOTIFICATION,
-      payload: data.n,
-      workerId: cluster.worker.id,
-    });
+    pubSubPublish(NOTIFICATION, result);
 
-    return data.n;
+    return result;
   }
 
   @Subscription(() => Int, {
