@@ -5,6 +5,7 @@ import { schema } from "./schema";
 
 import type { IncomingMessage, ServerResponse, Server } from "http";
 import type { FastifyInstance } from "fastify";
+import { pubSub } from "./pubsub";
 
 export const registerGraphQL = async (
   server: FastifyInstance<Server, IncomingMessage, ServerResponse>
@@ -33,7 +34,9 @@ export const registerGraphQL = async (
   server.register(GQL, {
     path: "/api/graphql",
     schema: await schema,
-    subscription: true,
+    subscription: {
+      emitter: pubSub,
+    },
     jit: 1,
   });
 };

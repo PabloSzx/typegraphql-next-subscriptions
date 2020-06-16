@@ -3,8 +3,13 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Person {
+  name: String!
+}
+
 type Query {
   add(x: Float!, y: Float!): Float!
+  persons: [Person!]!
 }
 
 type Subscription {
