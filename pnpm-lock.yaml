@@ -6,6 +6,7 @@ dependencies:
   fastify-gql: 4.0.0
   graphql: 15.1.0
   graphql-playground-html: 1.6.25
+  graphql-redis-subscriptions: 2.2.1_graphql-subscriptions@1.1.0
   graphql-subscriptions: 1.1.0_graphql@15.1.0
   ioredis: 4.17.3
   next: 9.4.4_ca1896585c3b88e06ba893a4954b1f43
@@ -3339,6 +3340,17 @@ packages:
       graphql: ^0.13.0 || ^14.0.0
     resolution:
       integrity: sha512-RRbBbqWi2pTNWOeore/AdCGOdDwywGCZu3zy42c3JLURyX5caAK4PS/xthSg3WeV45gmJsI884Fu/Uvs0tGDnQ==
+  /graphql-redis-subscriptions/2.2.1_graphql-subscriptions@1.1.0:
+    dependencies:
+      graphql-subscriptions: 1.1.0_graphql@15.1.0
+      iterall: 1.3.0
+    dev: false
+    optionalDependencies:
+      ioredis: 4.17.3
+    peerDependencies:
+      graphql-subscriptions: ^1.0.0
+    resolution:
+      integrity: sha512-Rk0hapKUZuZpJIv3rG5rmd1SX3f+9k1k5AXoh8bxbM3Vkdzh28WM7kvJOqq1pJuO3gQ4OAoqzciNT0MMHRylXQ==
   /graphql-subscriptions/1.1.0_graphql@15.1.0:
     dependencies:
       graphql: 15.1.0
@@ -7259,6 +7271,7 @@ specifiers:
   fastify-gql: ^4.0.0
   graphql: 15.1.0
   graphql-playground-html: ^1.6.25
+  graphql-redis-subscriptions: ^2.2.1
   graphql-subscriptions: ^1.1.0
   ioredis: ^4.17.3
   next: ^9.4.4

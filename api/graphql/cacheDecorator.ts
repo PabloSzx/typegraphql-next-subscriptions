@@ -2,7 +2,7 @@ import Redis from "ioredis";
 import { MD5 } from "object-hash";
 import { createMethodDecorator } from "type-graphql";
 
-const redis = new Redis({});
+const redis = new Redis();
 
 const emptyObject = {};
 

@@ -1,10 +1,10 @@
 import { Arg, Int, Query, Resolver, Root, Subscription } from "type-graphql";
 import { data } from "../../data";
-import { pubSubPublish, pubSub } from "../pubsub";
+import { pubSub } from "../pubsub";
 
 export const NOTIFICATION = "notification";
 
-pubSub.subscribe(NOTIFICATION, (payload) => {
+pubSub.subscribe(NOTIFICATION, (payload: number) => {
   data.n = payload;
 });
 
@@ -16,7 +16,7 @@ export class Add {
 
     const result = data.n + n;
 
-    pubSubPublish(NOTIFICATION, result);
+    pubSub.publish(NOTIFICATION, result);
 
     return result;
   }

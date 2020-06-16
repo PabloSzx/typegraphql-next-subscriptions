@@ -5,17 +5,16 @@ import Fastify from "fastify";
 import { cpus } from "os";
 
 import { IS_PRODUCTION } from "../shared/constants";
-import { broadcastMessages } from "./graphql/pubsub";
 
 if (cluster.isMaster) {
   if (IS_PRODUCTION) {
     console.log(`Master ${process.pid} is running`);
 
     const nThreads = cpus().length;
+    const workers: cluster.Worker[] = [];
     for (let i = 0; i < nThreads; i++) {
       const fork = cluster.fork();
-
-      broadcastMessages(fork);
+      workers.push(fork);
     }
 
     cluster.on("exit", (worker) => {
