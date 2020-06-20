@@ -1,0 +1,14 @@
+schema: schema.gql
+documents: client/src/graphql/*.gql
+generates:
+  client/src/graphql/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
+    config:
+      withHooks: true
+      withComponent: false
+hooks:
+  afterAllFileWrite:
+    - prettier --write client/src/graphql/index.ts

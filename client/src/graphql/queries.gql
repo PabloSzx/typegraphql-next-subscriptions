@@ -1,0 +1,7 @@
+subscription newN {
+  newNotification
+}
+
+query add {
+  add(x: 1, y: 2)
+}
