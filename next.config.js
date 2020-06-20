@@ -1,9 +1,11 @@
-module.exports = {
-  compress: false,
-  profiling: true,
-  experimental: {
-    workerThreads: true,
-    modern: true,
-  },
-  poweredByHeader: false,
+module.exports = () => {
+  return {
+    compress: false,
+    profiling: true,
+    experimental: {
+      workerThreads: true,
+      modern: true,
+    },
+    poweredByHeader: false,
+  };
 };

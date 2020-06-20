@@ -46,5 +46,11 @@ if (cluster.isMaster) {
       if (err) throw err;
       console.log(`> Ready on http://localhost:${port}`);
     });
+
+    if (!IS_PRODUCTION) {
+      import("axios").then(({ default: { get } }) => {
+        get(`http://localhost:${port}/`).catch(console.error);
+      });
+    }
   })();
 }
